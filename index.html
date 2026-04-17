@@ -31,7 +31,7 @@
             <p class="text-slate-500 font-bold italic underline decoration-blue-500 decoration-2">מעודכן לשנת הלימודים תשפ"ו</p>
         </header>
 
-        <!-- מדעי המחשב (5 יח"ל / 3 יח"ל) -->
+        <!-- מדעי המחשב -->
         <section class="space-y-4">
             <div class="flex items-center justify-between flex-wrap gap-2">
                 <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2">
@@ -61,10 +61,10 @@
                     </div>
                 </div>
 
-                <!-- 271 - מעבדה (שאלון חוסם) -->
+                <!-- 271 - מעבדה (השאלון החוסם) -->
                 <div class="card p-5 border-t-4 border-indigo-500 shadow-sm hover:shadow-md" id="card271">
                     <div id="weight271" class="weight-badge">24% מהציון (ב-5 יח")</div>
-                    <h3 class="font-black text-slate-700 mt-4 mb-3 italic">מעבדה - חוסם (899271)</h3>
+                    <h3 class="font-black text-slate-700 mt-4 mb-3 italic text-sm">מעבדה (899271) - חוסם</h3>
                     <div class="space-y-3">
                         <div>
                             <label class="text-[10px] font-bold text-slate-400 block mb-1">ציון שנתי (40%)</label>
@@ -79,7 +79,7 @@
                 </div>
 
                 <!-- 373 - פרויקט -->
-                <div class="card p-5 border-t-4 border-slate-400 shadow-sm hover:shadow-md" id="card373">
+                <div class="card p-5 border-t-4 border-orange-400 shadow-sm hover:shadow-md" id="card373">
                     <div id="weight373" class="weight-badge">40% מהציון (ב-5 יח")</div>
                     <h3 class="font-black text-slate-700 mt-4 mb-3">פרויקט WWW (899373)</h3>
                     <div class="space-y-3">
@@ -87,19 +87,20 @@
                             <label class="text-[10px] font-bold text-slate-400 block mb-1 text-center">ציון סופי לפרויקט (100%)</label>
                             <input type="number" id="e373" oninput="calculate()" class="num-input" placeholder="0" min="0" max="100">
                         </div>
-                        <div id="res373" class="text-center font-black text-slate-600 pt-2 border-t border-slate-100 italic">סופי: 0</div>
+                        <div id="res373" class="text-center font-black text-orange-600 pt-2 border-t border-slate-100 italic">סופי: 0</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Result Display -->
+            <!-- תצוגת תוצאה מדעי המחשב -->
             <div id="csResultContainer" class="bg-slate-900 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden transition-all duration-500">
                 <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div class="text-right">
                         <h4 id="finalTitle" class="text-blue-400 font-black text-xl">ציון סופי משוקלל - 5 יח"ל</h4>
-                        <p id="finalFormula" class="text-slate-400 text-sm mt-1 tracking-tight">36% עיוני + 24% מעבדה + 40% פרויקט</p>
-                        <div id="blockReason" class="hidden mt-4 text-red-200 font-bold text-xs bg-red-600/30 p-3 rounded-xl border border-red-500/50 backdrop-blur-sm">
-                            ⚠️ תשומת לב: הציון מחושב עבור 3 יח"ל (שאלון 899380) עקב ציון נמוך מ-55 בבחינת המעבדה (חסימה).
+                        <p id="finalFormula" class="text-slate-400 text-sm mt-1 tracking-tight italic">36% עיוני + 24% מעבדה + 40% פרויקט</p>
+                        <div id="blockReason" class="hidden mt-4 text-red-200 font-bold text-[11px] bg-red-600/30 p-3 rounded-xl border border-red-500/50 backdrop-blur-sm">
+                            ⚠️ נסיגה ל-3 יח"ל (שאלון 899380) עקב ציון נמוך מ-55 בבחינת המעבדה.<br>
+                            השקלול במצב זה: 60% שאלון 371 + 40% שאלון 373.
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
@@ -111,7 +112,7 @@
         </section>
 
         <!-- הנדסת תוכנה -->
-        <section id="seSection" class="space-y-4">
+        <section id="seSection" class="space-y-4 transition-all duration-300">
             <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2">
                 <span class="bg-emerald-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shadow-lg">2</span>
                 הנדסת תוכנה (5 יח"ל נוספות)
@@ -143,32 +144,33 @@
         </section>
         
         <footer class="text-center text-slate-400 text-[10px] font-bold pb-10">
-            * החישובים באתר זה הם לצורך הערכה בלבד. הציון הקובע הוא הציון המופיע במערכות משרד החינוך.
+            * החישובים מבוססים על הנחיות מפמ"ר מדעי המחשב לשנת תשפ"ו. <br>
+            במקרה של ציון נמוך מ-55 בבחינה ב-271, התלמיד זכאי ל-3 יח"ל בלבד (שאלון 899380).
         </footer>
     </div>
 
     <script>
         function calculate() {
-            // שאלון 371
+            // שאלון 371 - עיוני
             const y371 = parseFloat(document.getElementById('y371').value) || 0;
             const e371 = parseFloat(document.getElementById('e371').value) || 0;
             const f371 = Math.round((y371 * 0.3) + (e371 * 0.7));
             document.getElementById('res371').innerText = `סופי: ${f371}`;
 
-            // שאלון 271
+            // שאלון 271 - מעבדה (הבחינה ב-271 היא הקובעת לחסימה)
             const y271 = parseFloat(document.getElementById('y271').value) || 0;
             const e271 = parseFloat(document.getElementById('e271').value) || 0;
             const f271 = Math.round((y271 * 0.4) + (e271 * 0.6));
             document.getElementById('res271').innerText = `סופי: ${f271}`;
             
-            // שאלון 373
+            // שאלון 373 - פרויקט
             const e373 = parseFloat(document.getElementById('e373').value) || 0;
             document.getElementById('res373').innerText = `סופי: ${e373}`;
 
-            // תנאי חסימה: בחינת המעבדה (e271) מתחת ל-55
+            // תנאי חסימה: ציון בחינה (e271) נמוך מ-55 (כשיש ציון)
             const isBlocked = (e271 > 0 && e271 < 55);
             
-            // אלמנטים לעדכון UI
+            // אלמנטים לעדכון
             const unitBadge = document.getElementById('unitBadge');
             const finalTitle = document.getElementById('finalTitle');
             const finalFormula = document.getElementById('finalFormula');
@@ -177,39 +179,41 @@
             const csContainer = document.getElementById('csResultContainer');
             const seSection = document.getElementById('seSection');
             const e271Input = document.getElementById('e271');
-            const card373 = document.getElementById('card373');
+            const weight271 = document.getElementById('weight271');
+            const weight373 = document.getElementById('weight373');
 
             if (isBlocked) {
-                // עדכון תוויות למצב 3 יחידות (שאלון 899380)
+                // עדכון תוויות למצב נסיגה ל-3 יחידות (899380)
                 document.getElementById('weight371').innerText = "60% מהציון (ב-3 יח\")";
-                document.getElementById('weight271').innerText = "40% מהציון (ב-3 יח\")";
-                document.getElementById('weight373').innerText = "לא משוקלל (חסימה)";
+                weight271.innerText = "חוסם (לא משוקלל)";
+                weight373.innerText = "40% מהציון (ב-3 יח\")";
                 
                 unitBadge.innerText = "זכאות: 3 יחידות (899380)";
                 unitBadge.className = "unit-display bg-red-100 text-red-700 px-4 py-1 rounded-full font-black text-sm border border-red-200 shadow-sm";
                 
                 finalTitle.innerText = "ציון סופי - 3 יח\"ל (899380)";
                 finalTitle.className = "text-red-400 font-black text-xl";
-                finalFormula.innerText = "חישוב נסיגה: 60% עיוני (371) + 40% מעבדה (271)";
+                finalFormula.innerText = "חישוב נסיגה: 60% שאלון 371 + 40% שאלון 373";
                 
                 blockReason.classList.remove('hidden');
                 calcStatusLabel.innerText = "MODE: 3 UNITS (BLOCKED)";
                 csContainer.classList.add('border-red-600', 'border-4', 'pulse-red');
                 
                 e271Input.classList.add('status-blocked');
-                card373.style.opacity = "0.2";
-                seSection.style.opacity = "0.2";
-                seSection.style.pointerEvents = "none";
+                
+                // במצב חסימה ב-5 יח"ל מדעי המחשב, התלמיד לא יכול להשלים ל-10 יח"ל הנדסת תוכנה
+                seSection.style.opacity = "0.3";
+                seSection.style.filter = "grayscale(1)";
 
-                // חישוב ציון 3 יח"ל (שקלול 60-40)
-                const total3Units = Math.round((f371 * 0.60) + (f271 * 0.40));
+                // חישוב ציון 3 יח"ל (שקלול 60% עיוני ו-40% פרויקט)
+                const total3Units = Math.round((f371 * 0.60) + (e373 * 0.40));
                 document.getElementById('totalCS').innerText = total3Units;
                 document.getElementById('totalCS').className = "text-9xl font-black leading-none tracking-tighter text-red-500";
             } else {
-                // מצב 5 יחידות תקין
+                // מצב 5 יחידות תקין (899580)
                 document.getElementById('weight371').innerText = "36% מהציון (ב-5 יח\")";
-                document.getElementById('weight271').innerText = "24% מהציון (ב-5 יח\")";
-                document.getElementById('weight373').innerText = "40% מהציון (ב-5 יח\")";
+                weight271.innerText = "24% מהציון (ב-5 יח\")";
+                weight373.innerText = "40% מהציון (ב-5 יח\")";
 
                 unitBadge.innerText = "זכאות נוכחית: 5 יחידות (899580)";
                 unitBadge.className = "unit-display bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full font-black text-sm border border-emerald-200 shadow-sm";
@@ -223,17 +227,17 @@
                 csContainer.classList.remove('border-red-600', 'border-4', 'pulse-red');
                 
                 e271Input.classList.remove('status-blocked');
-                card373.style.opacity = "1";
+                
                 seSection.style.opacity = "1";
-                seSection.style.pointerEvents = "auto";
+                seSection.style.filter = "none";
 
-                // חישוב ציון 5 יח"ל (36-24-40)
+                // חישוב ציון 5 יח"ל (36% עיוני, 24% מעבדה, 40% פרויקט)
                 const total5Units = Math.round((f371 * 0.36) + (f271 * 0.24) + (e373 * 0.40));
                 document.getElementById('totalCS').innerText = total5Units;
                 document.getElementById('totalCS').className = "text-9xl font-black leading-none tracking-tighter text-white";
             }
 
-            // חישוב פרויקט הנדסת תוכנה (שקלול 50-50)
+            // חישוב פרויקט הנדסת תוכנה (50% שנתי, 50% בחינה)
             const y589 = parseFloat(document.getElementById('y589').value) || 0;
             const e589 = parseFloat(document.getElementById('e589').value) || 0;
             const f589 = Math.round((y589 * 0.5) + (e589 * 0.5));
