@@ -15,6 +15,11 @@
             border-bottom: 3px solid #2563eb;
             color: #2563eb;
         }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
@@ -23,7 +28,7 @@
         <!-- Header -->
         <header class="p-6 text-center border-b bg-white">
             <h1 class="text-3xl font-black text-blue-900 mb-2">ניהול ציוני מגמה</h1>
-            <p class="text-gray-500 font-medium">תיכון שש-שנתי - תשפ"ה</p>
+            <p class="text-gray-500 font-medium italic">רכזת מדעי המחשב והנדסת תוכנה</p>
             
             <div class="mt-4">
                 <button id="warToggle" onclick="toggleWarMode()" class="px-6 py-2 rounded-full text-sm font-bold transition-all shadow-sm border border-orange-300 bg-orange-50 text-orange-700">
@@ -33,35 +38,39 @@
         </header>
 
         <!-- Navigation Tabs -->
-        <nav class="flex border-b">
-            <button onclick="switchTab('cs')" id="tab-cs" class="flex-1 py-4 text-center font-bold tab-active transition-colors">מדעי המחשב</button>
-            <button onclick="switchTab('eng')" id="tab-eng" class="flex-1 py-4 text-center font-bold text-gray-400 hover:text-blue-600 transition-colors border-r">הנדסת תוכנה (התמחות)</button>
+        <nav class="flex border-b bg-gray-50">
+            <button onclick="switchTab('cs')" id="tab-cs" class="flex-1 py-4 text-center font-bold tab-active transition-colors">מדעי המחשב (5 יח"ל)</button>
+            <button onclick="switchTab('eng')" id="tab-eng" class="flex-1 py-4 text-center font-bold text-gray-400 hover:text-blue-600 transition-colors border-r">הנדסת תוכנה (5 יח"ל)</button>
         </nav>
 
         <div class="p-6">
             <!-- מדעי המחשב -->
             <div id="section-cs" class="space-y-6">
-                <div class="bg-blue-50 p-4 rounded-xl border-r-4 border-blue-400 flex items-start gap-3">
-                    <span class="text-blue-600 font-bold text-xl">ℹ️</span>
+                <div class="bg-blue-50 p-4 rounded-xl border-r-4 border-blue-400">
                     <p class="text-sm text-blue-800">
-                        החישוב מתבסס על שאלון 899371 (מבני נתונים) המהווה 70% והמעבדה (899283) המהווה 30%.
-                        <span id="warInfoText" class="block mt-1 font-bold">שימו לב: מתווה המלחמה כולל התאמות במיקוד ובהערכה.</span>
+                        <strong>מבנה הציון:</strong> 70% שאלון עיוני (בחינה חיצונית) ו-30% הערכה חלופית/מעבדה.
                     </p>
                 </div>
 
-                <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">ציון שאלון עיוני (899371/899271)</label>
-                        <input type="number" id="csTheory" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">שאלון 371 (עיוני 70%)</label>
+                        <input type="number" id="cs371" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg bg-gray-50 focus:bg-white transition-all">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">ציון מטלת ביצוע/מעבדה (30%)</label>
-                        <input type="number" id="csLab" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">שאלון 271 (מעבדה/30%)</label>
+                        <input type="number" id="cs271" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg bg-gray-50 focus:bg-white transition-all">
                     </div>
                 </div>
 
-                <div class="mt-10 p-8 bg-blue-600 rounded-2xl text-white text-center shadow-lg transform transition-transform hover:scale-[1.02]">
-                    <p class="text-blue-100 text-sm mb-1 uppercase tracking-wider">ציון סופי משוער - מדעי המחשב</p>
+                <!-- Transparency Box CS -->
+                <div id="csCalcDetails" class="hidden p-4 bg-gray-50 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600">
+                    <h4 class="font-bold mb-1">פירוט החישוב:</h4>
+                    <p id="csCalcString"></p>
+                </div>
+
+                <div class="mt-6 p-6 bg-blue-600 rounded-2xl text-white text-center shadow-lg transform transition-transform hover:scale-[1.01]">
+                    <p class="text-blue-100 text-sm mb-1 uppercase tracking-wider font-bold">ציון סופי משוער - מדעי המחשב</p>
                     <div id="csFinal" class="text-6xl font-black">0</div>
                 </div>
             </div>
@@ -73,28 +82,37 @@
                     <button onclick="setSpec('apps')" id="spec-apps" class="flex-1 py-2 rounded-lg text-sm font-bold text-gray-500">פיתוח אפליקציות</button>
                 </div>
 
-                <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label id="specLabel" class="block text-sm font-bold text-gray-700 mb-1">מבוא להגנת סייבר (899373)</label>
-                        <input type="number" id="engIntro" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg">
+                        <label id="specLabel" class="block text-sm font-bold text-gray-700 mb-1">שאלון 373 (מבוא 40%)</label>
+                        <input type="number" id="eng373" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg bg-gray-50 focus:bg-white transition-all">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">פרויקט גמר (5 יח"ל)</label>
-                        <input type="number" id="engProject" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">שאלון 589 (פרויקט 60%)</label>
+                        <input type="number" id="eng589" oninput="calculate()" placeholder="0-100" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none text-lg bg-gray-50 focus:bg-white transition-all">
                     </div>
                 </div>
 
-                <div class="mt-10 p-8 bg-slate-800 rounded-2xl text-white text-center shadow-lg transform transition-transform hover:scale-[1.02]">
-                    <p class="text-slate-400 text-sm mb-1 uppercase tracking-wider">ציון סופי - הנדסת תוכנה</p>
+                <!-- Transparency Box ENG -->
+                <div id="engCalcDetails" class="hidden p-4 bg-gray-50 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600">
+                    <h4 class="font-bold mb-1">פירוט החישוב:</h4>
+                    <p id="engCalcString"></p>
+                </div>
+
+                <div class="mt-6 p-6 bg-slate-800 rounded-2xl text-white text-center shadow-lg transform transition-transform hover:scale-[1.01]">
+                    <p class="text-slate-400 text-sm mb-1 uppercase tracking-wider font-bold">ציון סופי - הנדסת תוכנה</p>
                     <div id="engFinal" class="text-6xl font-black">0</div>
                 </div>
-                
-                <p class="text-center text-xs text-gray-400">שקלול: 40% מבוא התמחות | 60% פרויקט גמר</p>
             </div>
         </div>
 
-        <footer class="bg-gray-50 p-4 border-t text-center text-xs text-gray-500">
-            מערכת ניהול פדגוגית | רכז המגמה | משרד החינוך
+        <footer class="bg-gray-50 p-4 border-t text-center">
+            <p class="text-xs text-gray-500 font-bold mb-2">מערכת ניהול פדגוגית מגמת הנדסת תוכנה</p>
+            <div class="flex justify-center gap-4 text-[10px] text-gray-400">
+                <span>סמל שאלון 899371/271</span>
+                <span>•</span>
+                <span>סמל שאלון 899373/589</span>
+            </div>
         </footer>
     </div>
 
@@ -105,41 +123,21 @@
         function toggleWarMode() {
             isWarMode = !isWarMode;
             const btn = document.getElementById('warToggle');
-            const info = document.getElementById('warInfoText');
-            
             if (isWarMode) {
                 btn.innerHTML = '⚠️ מתווה הקלות מלחמה פעיל';
                 btn.className = 'px-6 py-2 rounded-full text-sm font-bold transition-all shadow-sm border border-orange-300 bg-orange-50 text-orange-700';
-                info.classList.remove('hidden');
             } else {
                 btn.innerHTML = '✅ מתווה שנה רגילה';
                 btn.className = 'px-6 py-2 rounded-full text-sm font-bold transition-all shadow-sm border border-green-300 bg-green-50 text-green-700';
-                info.classList.add('hidden');
             }
             calculate();
         }
 
         function switchTab(tab) {
-            const csSection = document.getElementById('section-cs');
-            const engSection = document.getElementById('section-eng');
-            const csBtn = document.getElementById('tab-cs');
-            const engBtn = document.getElementById('tab-eng');
-
-            if (tab === 'cs') {
-                csSection.classList.remove('hidden');
-                engSection.classList.add('hidden');
-                csBtn.classList.add('tab-active');
-                csBtn.classList.remove('text-gray-400');
-                engBtn.classList.remove('tab-active');
-                engBtn.classList.add('text-gray-400');
-            } else {
-                csSection.classList.add('hidden');
-                engSection.classList.remove('hidden');
-                engBtn.classList.add('tab-active');
-                engBtn.classList.remove('text-gray-400');
-                csBtn.classList.remove('tab-active');
-                csBtn.classList.add('text-gray-400');
-            }
+            document.getElementById('section-cs').classList.toggle('hidden', tab !== 'cs');
+            document.getElementById('section-eng').classList.toggle('hidden', tab !== 'eng');
+            document.getElementById('tab-cs').className = `flex-1 py-4 text-center font-bold ${tab === 'cs' ? 'tab-active' : 'text-gray-400'}`;
+            document.getElementById('tab-eng').className = `flex-1 py-4 text-center font-bold ${tab === 'eng' ? 'tab-active' : 'text-gray-400'} border-r`;
         }
 
         function setSpec(spec) {
@@ -151,32 +149,39 @@
             if (spec === 'cyber') {
                 cyberBtn.className = 'flex-1 py-2 rounded-lg text-sm font-bold bg-white shadow text-blue-700';
                 appsBtn.className = 'flex-1 py-2 rounded-lg text-sm font-bold text-gray-500';
-                label.innerText = 'מבוא להגנת סייבר (899373)';
+                label.innerText = 'שאלון 373 (סייבר - 40%)';
             } else {
                 appsBtn.className = 'flex-1 py-2 rounded-lg text-sm font-bold bg-white shadow text-blue-700';
                 cyberBtn.className = 'flex-1 py-2 rounded-lg text-sm font-bold text-gray-500';
-                label.innerText = 'תכנות בסביבת אינטרנט (899373)';
+                label.innerText = 'שאלון 373 (אינטרנט - 40%)';
             }
             calculate();
         }
 
         function calculate() {
-            // מדעי המחשב
-            const csTheory = parseFloat(document.getElementById('csTheory').value) || 0;
-            const csLab = parseFloat(document.getElementById('csLab').value) || 0;
+            // CS Calculation
+            const v371 = parseFloat(document.getElementById('cs371').value) || 0;
+            const v271 = parseFloat(document.getElementById('cs271').value) || 0;
             
-            // בחישוב הבסיסי: 70% עיוני, 30% מעבדה
-            let finalCsScore = (csTheory * 0.7) + (csLab * 0.3);
+            const csFinalValue = (v371 * 0.7) + (v271 * 0.3);
+            document.getElementById('csFinal').innerText = Math.round(csFinalValue);
             
-            // הנדסת תוכנה
-            const engIntro = parseFloat(document.getElementById('engIntro').value) || 0;
-            const engProject = parseFloat(document.getElementById('engProject').value) || 0;
-            
-            // שקלול התמחות: 40% מבוא, 60% פרויקט
-            let finalEngScore = (engIntro * 0.4) + (engProject * 0.6);
+            if(v371 > 0 || v271 > 0) {
+                document.getElementById('csCalcDetails').classList.remove('hidden');
+                document.getElementById('csCalcString').innerHTML = `(${v371} × 0.7) + (${v271} × 0.3) = <strong>${csFinalValue.toFixed(2)}</strong>`;
+            }
 
-            document.getElementById('csFinal').innerText = Math.round(finalCsScore);
-            document.getElementById('engFinal').innerText = Math.round(finalEngScore);
+            // ENG Calculation
+            const v373 = parseFloat(document.getElementById('eng373').value) || 0;
+            const v589 = parseFloat(document.getElementById('eng589').value) || 0;
+            
+            const engFinalValue = (v373 * 0.4) + (v589 * 0.6);
+            document.getElementById('engFinal').innerText = Math.round(engFinalValue);
+
+            if(v373 > 0 || v589 > 0) {
+                document.getElementById('engCalcDetails').classList.remove('hidden');
+                document.getElementById('engCalcString').innerHTML = `(${v373} × 0.4) + (${v589} × 0.6) = <strong>${engFinalValue.toFixed(2)}</strong>`;
+            }
         }
     </script>
 </body>
