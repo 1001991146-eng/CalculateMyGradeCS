@@ -18,6 +18,7 @@
         .badge { padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 900; }
         .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
         .result-pill { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.5rem 1rem; }
+        .summary-accent { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
     </style>
 </head>
 <body class="p-4 md:p-8 relative">
@@ -36,19 +37,7 @@
                         <p class="text-blue-300 font-bold text-xl italic italic">
                             "תכנות הוא לא רק כתיבת קוד, אלא פתרון בעיות שטרם נוצרו."
                         </p>
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 inline-block">
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                תלמידים יקרים, מגמת הנדסת תוכנה מעניקה לכם את הכלים להוביל את המהפכה הטכנולוגית הבאה. 
-                                <br class="hidden md:block"> כל מבנה נתונים וכל אלגוריתם הם לבנה בבניין העתיד המקצועי שלכם!
-                            </p>
-                        </div>
                     </div>
-                </div>
-                <!-- רקע "קוד" דקורטיבי -->
-                <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none code-font text-[10px] p-4 select-none overflow-hidden">
-                    for (let goal of dreams) { achieve(goal); } <br>
-                    class Success extends HardWork { ... } <br>
-                    while (curious) { learning++; }
                 </div>
             </div>
         </header>
@@ -63,17 +52,17 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                         </svg>
                     </div>
-                    <h2 class="text-2xl font-black text-slate-800">5 יח"ל מדעי המחשב</h2>
+                    <h2 class="text-2xl font-black text-slate-800">מדעי המחשב</h2>
                 </div>
 
-                <!-- שאלון 899380 -->
+                <!-- שאלון 899380 - 3 יחידות לימוד -->
                 <div class="card p-6 border-r-8 border-blue-500">
                     <div class="flex justify-between items-center mb-6">
-                        <span class="badge bg-blue-100 text-blue-700">בסיס (899380) - 3 יח"ל</span>
-                        <div class="flex items-center gap-2">
-                            <img src="https://img.icons8.com/color/24/checked-checkbox.png" class="w-5 h-5">
-                            <span class="text-[10px] font-bold text-slate-400 italic">משקל בציון ה-5: 60%</span>
+                        <div class="flex flex-col">
+                            <span class="badge bg-blue-100 text-blue-700 w-fit">זכאות בסיס (899380) - 3 יח"ל</span>
+                            <span class="text-[10px] text-slate-400 font-bold mt-1 italic italic">מהווה 60% מציון ה-5 יח"ל</span>
                         </div>
+                        <img src="https://img.icons8.com/color/48/checked-checkbox.png" class="w-10 h-10">
                     </div>
 
                     <div class="space-y-6">
@@ -81,7 +70,7 @@
                         <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 shadow-inner">
                             <div class="flex justify-between mb-4">
                                 <span class="text-sm font-black text-blue-900">שאלון עיוני 899371</span>
-                                <span class="text-[10px] font-bold text-slate-500">30% שנתי | 70% בחינה</span>
+                                <span class="text-[10px] font-bold text-slate-500 italic">30% שנתי | 70% בחינה</span>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
@@ -93,32 +82,40 @@
                                     <input type="number" id="e371" placeholder="0" oninput="calc()" class="input-field">
                                 </div>
                             </div>
-                            <!-- ציון סופי לשאלון 371 - מעוגל לפי הנחיות משרד החינוך -->
                             <div class="mt-4 flex justify-between items-center result-pill bg-white">
-                                <span class="text-xs font-black text-slate-500">ציון סופי שאלון 371 (מעוגל):</span>
+                                <span class="text-xs font-black text-slate-500">סופי שאלון 371 (מעוגל):</span>
                                 <span id="res371" class="text-xl font-black text-blue-600">--</span>
                             </div>
                         </div>
 
-                        <!-- פרויקט 373 -->
+                        <!-- שאלון 373 -->
                         <div class="p-5 bg-orange-50/50 rounded-2xl border border-orange-100">
                             <div class="flex justify-between mb-3">
-                                <div class="flex items-center gap-2">
-                                    <img src="https://img.icons8.com/color/24/development-skill.png" class="w-5 h-5">
-                                    <span class="text-sm font-black text-orange-900">פרויקט 899373</span>
-                                </div>
+                                <span class="text-sm font-black text-orange-900">פרויקט 899373 (מבוא/אינטרנט)</span>
                                 <span class="badge bg-orange-100 text-orange-700 italic">40% מה-3 יח"ל</span>
                             </div>
                             <input type="number" id="e373" placeholder="0" oninput="calc()" class="input-field !border-orange-200">
                         </div>
+
+                        <!-- סיכום 3 יחידות לימוד (שלב ביניים) -->
+                        <div class="mt-4 p-4 summary-accent rounded-2xl text-white shadow-lg flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] font-black opacity-80 uppercase tracking-widest">ציון סופי לסמל שאלון 899380</p>
+                                <h4 class="text-lg font-black">סה"כ ל-3 יחידות לימוד:</h4>
+                            </div>
+                            <div id="res380" class="text-4xl font-black">0</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- שאלון 899271 -->
+                <!-- שאלון 899271 - השלמה -->
                 <div class="card p-6 border-r-8 border-indigo-500">
                     <div class="flex justify-between items-center mb-6">
-                        <span class="badge bg-indigo-100 text-indigo-700">השלמה (899271) - ל-5 יח"ל</span>
-                        <span class="text-[10px] font-bold text-slate-400 italic">משקל בציון ה-5: 40%</span>
+                        <div class="flex flex-col">
+                            <span class="badge bg-indigo-100 text-indigo-700 w-fit">שאלון השלמה (899271)</span>
+                            <span class="text-[10px] text-slate-400 font-bold mt-1 italic italic italic italic">מהווה 40% מציון ה-5 יח"ל</span>
+                        </div>
+                        <img src="https://img.icons8.com/color/48/lock-landscape.png" class="w-10 h-10">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
@@ -130,14 +127,8 @@
                             <input type="number" id="e271" placeholder="0" oninput="calc()" class="input-field">
                         </div>
                     </div>
-                    <div class="mt-4 p-3 bg-indigo-50 rounded-xl flex items-start gap-2">
-                        <img src="https://img.icons8.com/color/24/info.png" class="w-4 h-4 mt-0.5">
-                        <p class="text-[11px] font-bold text-indigo-700 leading-tight italic">
-                            תזכורת: ציון מתחת ל-55 בבחינת ההשלמה חוסם את הזכאות ל-5 יחידות (הציון הסופי יישאר 3 יחידות).
-                        </p>
-                    </div>
-                    <p id="blockMsg" class="hidden mt-3 text-sm text-red-600 font-black text-center animate-bounce">
-                        ⚠️ חסם בחינה פעיל! לא הושגה זכאות ל-5 יח"ל.
+                    <p id="blockMsg" class="hidden mt-3 text-sm text-red-600 font-black text-center animate-pulse">
+                        ⚠️ שאלון חוסם! נדרש ציון 55 ומעלה בבחינה.
                     </p>
                 </div>
             </div>
@@ -150,78 +141,61 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                     </div>
-                    <h2 class="text-2xl font-black text-slate-800">5 יח"ל תכנון ותכנות מערכות</h2>
+                    <h2 class="text-2xl font-black text-slate-800">הנדסת תוכנה</h2>
                 </div>
 
                 <div class="card p-8 border-r-8 border-emerald-500 bg-emerald-50/20">
                     <div class="space-y-6">
                         <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="text-2xl font-black text-emerald-900 leading-tight">פרויקט גמר (899589)</h3>
-                                <p class="text-xs text-emerald-700 font-bold opacity-70 italic">5 יחידות לימוד נפרדות בתעודת הבגרות</p>
+                                <h3 class="text-2xl font-black text-emerald-900 leading-tight">פרויקט גמר (883589)</h3>
+                                <p class="text-xs text-emerald-700 font-bold opacity-70 italic">5 יחידות לימוד - בגרות מקצועית</p>
                             </div>
-                            <img src="https://img.icons8.com/fluency/64/graduation-cap.png" class="w-16 h-16">
+                            <img src="https://img.icons8.com/fluency/64/code-fork.png" class="w-16 h-16">
                         </div>
 
                         <div class="space-y-4">
-                            <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
-                                <div class="text-right">
-                                    <span class="block font-black text-emerald-800">ציון הגשה</span>
-                                    <span class="text-[10px] text-slate-400 font-bold italic">הערכת מורה (50%)</span>
-                                </div>
+                            <div class="bg-white p-5 rounded-2xl border border-emerald-100 flex items-center justify-between">
+                                <span class="font-black text-emerald-800">ציון הגשה (50%)</span>
                                 <input type="number" id="y589" placeholder="0" oninput="calc()" class="input-field w-24 !border-emerald-200">
                             </div>
-
-                            <div class="bg-white p-5 rounded-2xl border-2 border-emerald-400 shadow-sm flex items-center justify-between">
-                                <div class="text-right">
-                                    <span class="block font-black text-emerald-600">מבחן חיצוני</span>
-                                    <span class="text-[10px] text-slate-400 font-bold italic">הגנה בע"פ (50%)</span>
-                                </div>
+                            <div class="bg-white p-5 rounded-2xl border-2 border-emerald-400 flex items-center justify-between">
+                                <span class="font-black text-emerald-600">בחינה חיצונית (50%)</span>
                                 <input type="number" id="e589" placeholder="0" oninput="calc()" class="input-field w-24 !border-emerald-400">
                             </div>
                         </div>
 
-                        <!-- סיכום נפרד להנדסת תוכנה -->
-                        <div class="mt-8 p-6 bg-emerald-600 rounded-2xl text-white text-center shadow-xl relative overflow-hidden group">
-                            <div class="relative z-10">
-                                <p class="text-[10px] font-black uppercase tracking-widest opacity-80 mb-1">ציון סופי סופי</p>
-                                <p class="text-lg font-black mb-1">תכנון ותכנות מערכות</p>
-                                <div id="res589" class="text-7xl font-black">0</div>
-                            </div>
-                            <div class="absolute top-0 right-0 w-full h-full bg-white opacity-0 group-hover:opacity-5 transition-opacity"></div>
+                        <div class="mt-8 p-6 bg-emerald-600 rounded-2xl text-white text-center shadow-xl">
+                            <p class="text-[10px] font-black opacity-80 uppercase mb-1 italic">ציון סופי - תכנון ותכנות מערכות</p>
+                            <div id="res589" class="text-7xl font-black">0</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- מונה יחידות -->
                 <div class="card p-6 bg-slate-900 text-white flex items-center justify-between shadow-2xl relative overflow-hidden">
                     <div class="relative z-10">
-                        <p class="text-xs font-black text-blue-400 uppercase tracking-widest mb-1 italic italic">סטטוס מסלול הנדסת תוכנה</p>
-                        <h3 class="text-xl font-black">סה"כ יחידות לימוד מצטבר</h3>
+                        <p class="text-xs font-black text-blue-400 uppercase tracking-widest mb-1 italic italic italic">סטטוס יחידות מצטבר</p>
+                        <h3 class="text-xl font-black">זכאות יח"ל במגמה</h3>
                     </div>
                     <div id="finalUnits" class="text-7xl font-black text-blue-400 relative z-10">0</div>
-                    <div class="absolute right-0 top-0 bottom-0 w-1/4 bg-blue-500/10 skew-x-12"></div>
                 </div>
             </div>
         </div>
 
-        <!-- סיכום סופי מדעי המחשב -->
+        <!-- סיכום סופי - 5 יח"ל מדעי המחשב -->
         <div class="card p-1 bg-gradient-to-r from-blue-600 to-indigo-700 shadow-2xl mt-8">
             <div class="bg-white rounded-[1.4rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10">
                 <div class="text-center md:text-right space-y-4">
                     <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs font-black">
                         <img src="https://img.icons8.com/fluency/20/verified-badge.png">
-                        שקלול סופי לפי הנחיות המפמ"ר
+                        שקלול סופי (סמל מקצוע 899580)
                     </div>
-                    <h2 class="text-4xl font-black text-slate-900 leading-none">ציון סופי: מדעי המחשב</h2>
-                    <p class="text-slate-500 font-bold italic italic">הציון המשוקלל שיופיע בספח בחינות הבגרות (5 יח"ל)</p>
+                    <h2 class="text-4xl font-black text-slate-900 leading-none">ציון סופי ב-5 יח"ל מדעי המחשב</h2>
+                    <p class="text-slate-500 font-bold italic italic">שקלול של ה-3 יחידות (60%) והשלמה ל-5 (40%)</p>
                 </div>
-                <div class="flex items-center gap-8">
-                    <div class="h-24 w-1 bg-slate-100 hidden md:block rounded-full"></div>
-                    <div class="text-center">
-                        <div id="finalCS" class="text-9xl font-black text-blue-600 tracking-tighter drop-shadow-sm">0</div>
-                        <p class="text-xs font-black text-slate-400 mt-2 uppercase tracking-widest">Final CS Grade</p>
-                    </div>
+                <div class="text-center">
+                    <div id="finalCS" class="text-9xl font-black text-blue-600 tracking-tighter drop-shadow-sm">0</div>
+                    <p class="text-xs font-black text-slate-400 mt-2 uppercase tracking-widest">Final CS Grade</p>
                 </div>
             </div>
         </div>
@@ -229,35 +203,25 @@
     </div>
 
     <footer class="mt-16 text-center pb-12 space-y-4">
-        <div class="flex justify-center gap-6 grayscale opacity-60">
-            <img src="https://img.icons8.com/color/48/python.png" alt="Python">
-            <img src="https://img.icons8.com/color/48/java-code.png" alt="Java">
-            <img src="https://img.icons8.com/color/48/c-sharp-logo-2.png" alt="C#">
-        </div>
-        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest italic italic">פותח באהבה עבור רכזת מגמת הנדסת תוכנה &copy; תשפ"ה</p>
+        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest italic italic italic italic">מחשבון המגמה המותאם - מבוסס הנחיות משרד החינוך תשפ"ה</p>
     </footer>
 
     <script>
         function calc() {
-            // --- שלב 1: שאלון 371 (עיוני ראשון) ---
+            // --- שלב 1: שאלון 371 ---
             const y371 = parseFloat(document.getElementById('y371').value) || 0;
             const e371 = parseFloat(document.getElementById('e371').value) || 0;
-            
-            // חישוב מדויק
             const f371_raw = (y371 * 0.3) + (e371 * 0.7);
-            // משרד החינוך מעגל כל שאלון בנפרד למספר שלם
             const f371_final = Math.round(f371_raw);
-            
-            // תצוגת הציון המעוגל לתלמיד (כמו במנב"ס)
             document.getElementById('res371').innerText = (y371 || e371) ? f371_final : "--";
 
-            // --- שלב 2: שאלון 373 (פרויקט 3 יח"ל) ---
+            // --- שלב 2: שאלון 373 ---
             const f373 = parseFloat(document.getElementById('e373').value) || 0;
 
-            // --- שלב 3: ציון ה-3 יח"ל (סמל 899380) ---
-            // משתמשים בציון המעוגל של 371 לשקלול הבא
+            // --- שלב 3: ציון ה-3 יח"ל (סמל 899380) - זהו שלב ביניים קריטי ---
             const f380_raw = (f371_final * 0.6) + (f373 * 0.4);
             const f380_final = Math.round(f380_raw);
+            document.getElementById('res380').innerText = (f371_final || f373) ? f380_final : "0";
 
             // --- שלב 4: שאלון 271 (השלמה ל-5) ---
             const y271 = parseFloat(document.getElementById('y271').value) || 0;
@@ -265,43 +229,43 @@
             const f271_raw = (y271 * 0.4) + (e271 * 0.6);
             const f271_final = Math.round(f271_raw);
 
-            // --- שלב 5: שאלון 589 (הנדסת תוכנה - פרויקט גדול) ---
+            // --- שלב 5: פרויקט הנדסת תוכנה 589 ---
             const y589 = parseFloat(document.getElementById('y589').value) || 0;
             const e589 = parseFloat(document.getElementById('e589').value) || 0;
             const f589_final = Math.round((y589 * 0.5) + (e589 * 0.5));
             document.getElementById('res589').innerText = f589_final;
 
-            // --- שלב 6: לוגיקת חסימה וזכאות (מדעי המחשב) ---
+            // --- שלב 6: חסימות וזכאות למדעי המחשב ---
             let finalCSGrade = 0;
-            let unitsCount = 0;
+            let unitsCS = 0;
             const isBlocked = (e271 > 0 && e271 < 55);
 
             if (isBlocked) {
-                // אם חסום - הציון הסופי הוא רק ה-3 יחידות
+                // חוסם פעיל -> התלמיד מקבל רק את הציון של ה-3 יח"ל כציון סופי במקצוע
                 finalCSGrade = f380_final;
-                unitsCount = 3;
+                unitsCS = 3;
                 document.getElementById('blockMsg').classList.remove('hidden');
                 document.getElementById('e271').classList.add('blocked');
             } else if (e271 >= 55) {
-                // אם עבר - שקלול 5 יחידות מלא
+                // עבר את החוסם -> שקלול מלא ל-5 יח"ל
                 const finalCS_raw = (f380_final * 0.6) + (f271_final * 0.4);
                 finalCSGrade = Math.round(finalCS_raw);
-                unitsCount = 5;
+                unitsCS = 5;
                 document.getElementById('blockMsg').classList.add('hidden');
                 document.getElementById('e271').classList.remove('blocked');
             } else {
-                // מצב בו טרם הוזן ציון השלמה
+                // טרם הוזן ציון בחינת השלמה
                 finalCSGrade = f380_final;
-                unitsCount = (f380_final > 0) ? 3 : 0;
+                unitsCS = (f380_final > 0) ? 3 : 0;
                 document.getElementById('blockMsg').classList.add('hidden');
                 document.getElementById('e271').classList.remove('blocked');
             }
 
-            // עדכון תצוגת ציונים
+            // עדכון תצוגה סופית
             document.getElementById('finalCS').innerText = finalCSGrade;
             
-            // חישוב יחידות לימוד כולל במגמה (בנפרד)
-            let totalUnits = unitsCount;
+            // יחידות כוללות במגמה
+            let totalUnits = unitsCS;
             if (f589_final > 0) totalUnits += 5;
             document.getElementById('finalUnits').innerText = totalUnits;
         }
