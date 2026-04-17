@@ -27,7 +27,7 @@
             <p class="text-slate-500 font-bold italic text-sm">לפי מבנה בחינות תשפ"ה - מדעי המחשב והנדסת תוכנה</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             
             <!-- טור מדעי המחשב -->
             <div class="space-y-6">
@@ -95,7 +95,6 @@
                             </div>
                         </div>
                         
-                        <!-- הציון הסופי של שאלון 271 שנוסף עכשיו -->
                         <div class="p-2 bg-indigo-50 border border-indigo-100 rounded-lg flex justify-between items-center shadow-sm">
                             <span class="text-[10px] font-bold text-indigo-800">ציון סופי שאלון 271:</span>
                             <span id="res271" class="text-md font-black text-indigo-600">0</span>
@@ -104,6 +103,24 @@
                         <p id="blockAlert" class="hidden mt-1 p-2 bg-red-50 text-red-600 text-[10px] font-black text-center rounded-lg border border-red-100 animate-pulse italic">
                             ⚠️ שאלון חוסם! ציון בחינה נמוך מ-55 מונע זכאות ל-5 יח"ל.
                         </p>
+                    </div>
+                </div>
+
+                <!-- כרטיס סיכום סופי - כעת צמוד לטור מדעי המחשב וצר יותר -->
+                <div id="summaryCard" class="card p-6 border-none bg-white shadow-2xl relative overflow-hidden">
+                    <div id="summaryBg" class="absolute inset-0 bg-blue-600 opacity-5 transition-colors duration-300"></div>
+                    <div class="relative z-10 space-y-4">
+                        <div class="text-right">
+                            <div id="statusTag" class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black mb-2">
+                                שקלול סופי (סמל מקצוע 899580)
+                            </div>
+                            <h2 id="summaryTitle" class="text-xl font-black text-slate-800 tracking-tight leading-tight">סופי מדעי המחשב</h2>
+                            <p id="summaryDesc" class="text-slate-500 font-bold text-[11px] italic mt-1">הזן נתונים לחישוב</p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+                            <div id="finalCS" class="text-6xl font-black text-blue-600 leading-none drop-shadow-sm">0</div>
+                            <span id="unitsSub" class="text-[10px] font-black text-slate-400 tracking-widest uppercase text-left">0 יח"ל</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,7 +152,7 @@
                     </div>
                 </div>
 
-                <!-- זכאות יחידות -->
+                <!-- זכאות יחידות כללית -->
                 <div class="card p-6 bg-slate-900 text-white flex items-center justify-between shadow-2xl">
                     <div>
                         <p class="text-[10px] font-bold text-blue-400 uppercase tracking-widest italic mb-1">סה"כ יחידות במגמה</p>
@@ -146,29 +163,10 @@
             </div>
         </div>
 
-        <!-- כרטיס סיכום סופי -->
-        <div id="summaryCard" class="card p-8 border-none bg-white shadow-2xl relative overflow-hidden">
-            <div id="summaryBg" class="absolute inset-0 bg-blue-600 opacity-5 transition-colors duration-300"></div>
-            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                <div class="text-center md:text-right">
-                    <div id="statusTag" class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black mb-3">
-                        שקלול סופי (סמל מקצוע 899580)
-                    </div>
-                    <h2 id="summaryTitle" class="text-3xl font-black text-slate-800 tracking-tight leading-tight">ציון סופי במדעי המחשב</h2>
-                    <p id="summaryDesc" class="text-slate-500 font-bold text-sm italic mt-1">הזן נתונים לראות את התוצאה</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div id="finalCS" class="text-8xl font-black text-blue-600 leading-none drop-shadow-sm">0</div>
-                    <span id="unitsSub" class="text-[11px] font-black text-slate-400 mt-2 tracking-widest uppercase">0 יחידות לימוד</span>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <script>
         function calc() {
-            // קריאת ערכים
             const y371 = parseFloat(document.getElementById('y371').value) || 0;
             const e371 = parseFloat(document.getElementById('e371').value) || 0;
             const e373 = parseFloat(document.getElementById('e373').value) || 0;
@@ -177,28 +175,22 @@
             const y589 = parseFloat(document.getElementById('y589').value) || 0;
             const e589 = parseFloat(document.getElementById('e589').value) || 0;
 
-            // 1. חישוב שאלון 371 (סופי מעוגל)
             const f371 = Math.round((y371 * 0.3) + (e371 * 0.7));
             document.getElementById('res371').innerText = f371;
 
-            // 2. חישוב 3 יחידות (899380)
             const f380 = Math.round((f371 * 0.6) + (e373 * 0.4));
             document.getElementById('res380').innerText = f380;
 
-            // 3. חישוב השלמה (899271) - תוקן והוסף תצוגה
             const f271 = Math.round((y271 * 0.4) + (e271 * 0.6));
             document.getElementById('res271').innerText = f271;
 
-            // 4. חישוב פרויקט 5 יחידות (899589)
             const f589 = Math.round((y589 * 0.5) + (e589 * 0.5));
             document.getElementById('res589').innerText = f589;
 
-            // לוגיקת חסימה וזכאות
             let finalGrade = 0;
             let unitsCS = 0;
             const isBlocked = (e271 > 0 && e271 < 55);
             
-            const summaryCard = document.getElementById('summaryCard');
             const summaryBg = document.getElementById('summaryBg');
             const finalCSDisplay = document.getElementById('finalCS');
             const statusTag = document.getElementById('statusTag');
@@ -209,51 +201,43 @@
             const e271Input = document.getElementById('e271');
 
             if (isBlocked) {
-                // מקרה חסימה
                 finalGrade = f380;
                 unitsCS = 3;
-                
                 summaryBg.className = "absolute inset-0 bg-red-600 opacity-10";
-                finalCSDisplay.className = "text-8xl font-black text-red-600 leading-none drop-shadow-sm";
-                statusTag.className = "inline-block px-3 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-black mb-3";
-                statusTag.innerText = "⚠️ חסימה פעילה";
-                summaryTitle.innerText = "זכאות ל-3 יח\"ל בלבד";
-                summaryDesc.innerText = "ציון הבחינה ב-271 נמוך מ-55. הציון המוצג הוא של ה-3 יח\"ל.";
+                finalCSDisplay.className = "text-6xl font-black text-red-600 leading-none drop-shadow-sm";
+                statusTag.className = "inline-block px-3 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-black mb-2";
+                statusTag.innerText = "⚠️ חסימה";
+                summaryTitle.innerText = "זכאות ל-3 יחידות";
+                summaryDesc.innerText = "ציון בחינה 271 חוסם 5 יחידות.";
                 blockAlert.classList.remove('hidden');
                 e271Input.classList.add('blocked-input');
             } else if (e271 >= 55) {
-                // מקרה מעבר תקין 5 יחידות
                 finalGrade = Math.round((f380 * 0.6) + (f271 * 0.4));
                 unitsCS = 5;
-
                 summaryBg.className = "absolute inset-0 bg-blue-600 opacity-5";
-                finalCSDisplay.className = "text-8xl font-black text-blue-600 leading-none drop-shadow-sm";
-                statusTag.className = "inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black mb-3";
-                statusTag.innerText = "✅ זכאות מלאה ל-5 יח\"ל";
-                summaryTitle.innerText = "ציון סופי במדעי המחשב";
-                summaryDesc.innerText = "שקלול ה-3 יחידות (60%) והשלמה (40%)";
+                finalCSDisplay.className = "text-6xl font-black text-blue-600 leading-none drop-shadow-sm";
+                statusTag.className = "inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black mb-2";
+                statusTag.innerText = "✅ 5 יחידות";
+                summaryTitle.innerText = "סופי מדעי המחשב";
+                summaryDesc.innerText = "שקלול 380 (60%) והשלמה (40%)";
                 blockAlert.classList.add('hidden');
                 e271Input.classList.remove('blocked-input');
             } else {
-                // טרם הוזן ציון מעבר או ציון בכלל
                 finalGrade = f380;
                 unitsCS = (f380 > 0) ? 3 : 0;
-                
                 summaryBg.className = "absolute inset-0 bg-blue-600 opacity-5";
-                finalCSDisplay.className = "text-8xl font-black text-blue-600 leading-none drop-shadow-sm";
-                statusTag.className = "inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black mb-3";
-                statusTag.innerText = (unitsCS === 3) ? "זכאות בסיס (3 יח\"ל)" : "הזן ציונים לחישוב";
-                summaryTitle.innerText = "ציון סופי במדעי המחשב";
-                summaryDesc.innerText = (unitsCS === 3) ? "זהו הציון ל-3 יחידות." : "הציון הסופי יופיע כאן";
+                finalCSDisplay.className = "text-6xl font-black text-blue-600 leading-none drop-shadow-sm";
+                statusTag.className = "inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black mb-2";
+                statusTag.innerText = (unitsCS === 3) ? "3 יחידות" : "המתנה לנתונים";
+                summaryTitle.innerText = "סופי מדעי המחשב";
+                summaryDesc.innerText = (unitsCS === 3) ? "זהו הציון ל-3 יחידות." : "הזן ציונים לחישוב";
                 blockAlert.classList.add('hidden');
                 e271Input.classList.remove('blocked-input');
             }
 
-            // עדכון תצוגה
             finalCSDisplay.innerText = finalGrade;
-            unitsSub.innerText = unitsCS + " יחידות לימוד";
+            unitsSub.innerText = unitsCS + " יח\"ל";
             
-            // יחידות סה"כ במגמה
             let totalUnits = unitsCS;
             if (f589 > 0) totalUnits += 5;
             document.getElementById('finalUnits').innerText = totalUnits;
